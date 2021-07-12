@@ -1,30 +1,4 @@
 "use strict";
-/**
- * Copyright 2020 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -61,45 +35,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 exports.__esModule = true;
-var lodash_1 = require("lodash");
-var replace_in_file_1 = __importDefault(require("replace-in-file"));
-var jest_diff_1 = __importDefault(require("jest-diff"));
-function prepare(PluginConfig, context) {
+exports.prepare = void 0;
+var fs_1 = require("fs");
+var js_yaml_1 = require("js-yaml");
+function prepare(_, context) {
     return __awaiter(this, void 0, void 0, function () {
-        var _i, _a, replacement, results, replaceInFileConfig, actual;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _i = 0, _a = PluginConfig.replacements;
-                    _b.label = 1;
-                case 1:
-                    if (!(_i < _a.length)) return [3 /*break*/, 4];
-                    replacement = _a[_i];
-                    results = replacement.results;
-                    delete replacement.results;
-                    replaceInFileConfig = replacement;
-                    replaceInFileConfig.to = lodash_1.template(replacement.to)(__assign({}, context));
-                    replaceInFileConfig.from = new RegExp(replacement.from, "g");
-                    return [4 /*yield*/, replace_in_file_1["default"](replaceInFileConfig)];
-                case 2:
-                    actual = _b.sent();
-                    if (results) {
-                        results = results.sort();
-                        actual = actual.sort();
-                        if (!lodash_1.isEqual(actual.sort(), results.sort())) {
-                            throw new Error("Results differed from actual! \n" + jest_diff_1["default"](results, actual));
-                        }
-                    }
-                    _b.label = 3;
-                case 3:
-                    _i++;
-                    return [3 /*break*/, 1];
-                case 4: return [2 /*return*/];
-            }
+        var content, obj;
+        return __generator(this, function (_a) {
+            content = fs_1.readFileSync('pubspec.yaml', 'utf-8');
+            obj = js_yaml_1.load(content);
+            obj.version = context.nextRelease.version + "+" + new Date().getTime().toString().slice(0, 10);
+            fs_1.writeFileSync('pubspec.yaml', js_yaml_1.dump(obj), { encoding: 'utf-8' });
+            return [2 /*return*/];
         });
     });
 }
