@@ -1,0 +1,84 @@
+name: exemple
+description: A new Flutter project.
+module:
+  androidX: true
+publish_to: none
+version: 2.0.0+1626116797
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+scripts:
+  mobx: >-
+    flutter pub run build_runner watch --delete-conflicting-outputs
+    --use-polling-watcher
+  get: flutter packages get
+  appicon: 'flutter pub run flutter_launcher_icons:main -f pubspec.yaml'
+  apk: flutter build apk
+  test: flutter test --coverage ./lib
+  coverage: genhtml -o coverage coverage/lcov.info & xdg-open coverage/index-sort-l.html
+dependencies:
+  flutter:
+    sdk: flutter
+  camera: null
+  path_provider: null
+  path: null
+  image_editor: 0.7.3
+  cupertino_icons: ^1.0.0
+  provider: null
+  mobx: ^1.2.1+4
+  flutter_mobx: ^1.1.0+2
+  dio: null
+  flutter_dotenv: ^2.1.0
+  intl: ^0.16.1
+  mask_text_input_formatter: ^1.2.1
+  qr_mobile_vision: ^2.0.0
+  webview_flutter: ^1.0.7
+  shared_preferences: ^0.5.8
+  infinite_scroll_pagination: ^2.3.0
+  uuid: ^2.2.2
+  device_info_plus: 0.7.2
+  package_info: ^0.4.3+4
+  vibration: ^1.7.3
+  easy_debounce: ^1.0.2
+  permission_handler: ^5.1.0
+  flutter_image_compress: ^0.7.0
+  firebase_core: 0.7.0
+  firebase_crashlytics: ^0.4.0+1
+  firebase_analytics: null
+  sentry_flutter: ^4.0.0
+  enum_to_string: null
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: null
+  build_runner: null
+  mobx_codegen: null
+  modular_codegen: ^2.0.0+1
+  image_test_utils: null
+  flutter_launcher_icons: ^0.8.0
+flutter_icons:
+  ios: true
+  android: true
+flutter:
+  uses-material-design: true
+  assets:
+    - lib/app/assets/images/icons/
+    - lib/app/assets/images/
+    - .env
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: lib/app/assets/fonts/Roboto-Black.ttf
+        - asset: lib/app/assets/fonts/Roboto-BlackItalic.ttf
+        - asset: lib/app/assets/fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: lib/app/assets/fonts/Roboto-BoldItalic.ttf
+        - asset: lib/app/assets/fonts/Roboto-Italic.ttf
+          style: italic
+        - asset: lib/app/assets/fonts/Roboto-Light.ttf
+        - asset: lib/app/assets/fonts/Roboto-LightItalic.ttf
+        - asset: lib/app/assets/fonts/Roboto-Medium.ttf
+        - asset: lib/app/assets/fonts/Roboto-MediumItalic.ttf
+        - asset: lib/app/assets/fonts/Roboto-Regular.ttf
+        - asset: lib/app/assets/fonts/Roboto-Thin.ttf
+        - asset: lib/app/assets/fonts/Roboto-ThinItalic.ttf
+          style: italic

@@ -1,0 +1,61 @@
+{
+  "name": "semantic-release-flutter",
+  "version": "1.0.0",
+  "description": "Semantic Release Flutter Plugin",
+  "keywords": [
+    "semantic-release",
+    "node",
+    "flutter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabriciojso/semantic-release-flutter.git"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Fabricio Oliveira",
+    "email": "fabricio.jhonata@gmail.com"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist/*",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "all": "npm run build && npm run format-check && npm run lint && npm test && npm run docs",
+    "build": "tsc",
+    "docs": "rm -rf docs && typedoc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint src/**/*.ts",
+    "lint-fix": "eslint --fix src/**/*.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "jest-diff": "^26.5.2",
+    "js-yaml": "^3.13.1",
+    "lodash": "^4.17.20",
+    "replace-in-file": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/js-yaml": "^4.0.2",
+    "@types/lodash": "^4.14.161",
+    "@types/node": "^14.11.2",
+    "@types/semantic-release": "^17.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "eslint": "^7.19.0",
+    "eslint-plugin-jest": "^24.1.3",
+    "fs-extra": "^9.0.1",
+    "jest": "^26.4.2",
+    "jest-circus": "^26.4.2",
+    "prettier": "^2.1.2",
+    "tmp": "^0.2.1",
+    "ts-jest": "^26.4.0",
+    "typedoc": "^0.19.2",
+    "typedoc-plugin-markdown": "^3.1.1",
+    "typescript": "^3.9.7"
+  }
+}
